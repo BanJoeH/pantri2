@@ -43,6 +43,7 @@ type ActionData = {
   email?: string;
 };
 
+
 export const action: ActionFunction = async ({ request }) => {
   const form = await request.formData();
   const email = form.get("email");
