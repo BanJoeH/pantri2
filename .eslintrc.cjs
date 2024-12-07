@@ -13,16 +13,36 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
+    project: ["./tsconfig.json"],
   },
   env: {
     browser: true,
     commonjs: true,
     es6: true,
   },
-  ignorePatterns: ["!**/.server", "!**/.client"],
+  ignorePatterns: ["!**/.server", "!**/.client", "eslintrc.cjs"],
+  plugins: ["@typescript-eslint", "drizzle"],
 
   // Base config
-  extends: ["eslint:recommended"],
+  extends: [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended-type-checked",
+    "prettier",
+  ],
+  rules: {
+    "@typescript-eslint/triple-slash-reference": "off",
+    "@typescript-eslint/consistent-type-imports": "error",
+    "@typescript-eslint/no-inferrable-types": "error",
+    "@typescript-eslint/no-unnecessary-condition": "error",
+    "@typescript-eslint/prefer-ts-expect-error": "warn",
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "no-constant-binary-expression": "error",
+    "drizzle/enforce-delete-with-where": "error",
+    "drizzle/enforce-update-with-where": "error",
+    "react/prop-types": [2, { ignore: ["className"] }],
+  },
 
   overrides: [
     // React
